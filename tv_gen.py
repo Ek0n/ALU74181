@@ -1,4 +1,4 @@
-BIT_LEN = 2
+BIT_LEN = 4
 OPERATIONS = [
     #S M Ci F
     (0x0, 0, 0, lambda a, b: a + 1),
