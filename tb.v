@@ -7,15 +7,16 @@ module tb();
 
     // Operands
     reg[3:0] a, b, yexpected;
-    wire y;
+    wire [3:0] y;
 
     reg[31:0] vectornum, errors;
-    reg[3:0] testvectors[15000:0];
+    reg[18:0] testvectors[0:15000];
 
     // instantiate device under test
     alu74181 dut(s, ci, M, a, b, y);
 
-    // generate clock always
+    // generate clock
+    always
     begin
         clk = 1;
         #5;
@@ -45,12 +46,11 @@ module tb();
     always @ (negedge clk)
         if(~reset) begin // skip during reset
             if(y !== yexpected) begin
-                $display("Error: inputs = %b, %b", {a, b});
-                $display(" outputs = %b(%b expected)", y, yexpected);
+                $display("Error: inputs = %b, %b", a, b);
                 errors = errors + 1;
             end
             vectornum = vectornum + 1;
-            if(testvectors[vectornum] === 4’bx) begin
+            if(testvectors[vectornum] === 4'bx) begin
                 $display("%d tests completed with %d errors", vectornum, errors);
                 $finish;
             end

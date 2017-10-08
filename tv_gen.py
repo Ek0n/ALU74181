@@ -63,13 +63,14 @@ def main():
         for operation in OPERATIONS:
             for op_a in range(0, 2**BIT_LEN):
                 for op_b in range(0, 2**BIT_LEN):
-                    tv_f.write('{0:04b} {1:b} {2:b} {3:04b} {4:04b} {5:04b}\n'.format(
+                    tv_f.write('{0:04b}{1:b}{2:b}{3:04b}{4:04b}{5:04b}\n'.format(
                         operation[0],
                         operation[1],
                         operation[2],
                         op_a,
                         op_b,
                         operation[3](op_a, op_b) & bitmask))
+        tv_f.write("xxxx")
 
 if __name__ == '__main__':
     main()
