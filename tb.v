@@ -47,6 +47,9 @@ module tb();
         if(~reset) begin // skip during reset
             if(y !== yexpected) begin
                 $display("Error: inputs = %b, %b", a, b);
+                $display("Error: flags = %b, %b", M, ci);
+                $display("Error: selection = %b", s);
+                $display(" outputs = %b (%b expected)", y, yexpected);
                 errors = errors + 1;
             end
             vectornum = vectornum + 1;
